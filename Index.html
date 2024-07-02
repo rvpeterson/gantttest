@@ -1,0 +1,33 @@
+<html>
+  <head>
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript">
+      google.charts.load('current', {'packages':['timeline']});
+      google.charts.setOnLoadCallback(drawChart);
+      function drawChart() 
+      {
+        var queryString = "A1:D6";//encodeURIComponent('SELECT A, H, O, Q, R, U LIMIT 5 OFFSET 8');
+
+        var query = new google.visualization.Query(
+            'https://docs.google.com/spreadsheets/d/1U4foSYuNhbv89mCCvsrMZubuGcrx2D31XYxpazOZjGA/gviz/tq?sheet=Sheet1&headers=1&range=' + queryString);
+        query.send(handleSampleDataQueryResponse);
+      }
+
+      function handleSampleDataQueryResponse(response)
+      {
+        if (response.isError()) {
+        alert('Error in query: ' + response.getMessage() + ' ' + response.getDetailedMessage());
+        return;
+      }
+        var container = document.getElementById('timeline');
+        var chart = new google.visualization.Timeline(container);
+
+        var data = response.getDataTable();
+        chart.draw(data);
+      }
+    </script>
+  </head>
+  <body>
+    <div id="timeline" style="height: 180px;"></div>
+  </body>
+</html>
