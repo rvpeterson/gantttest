@@ -6,7 +6,7 @@
       google.charts.setOnLoadCallback(drawChart);
       function drawChart() 
       {
-        var queryString = "A1:D6";//encodeURIComponent('SELECT A, H, O, Q, R, U LIMIT 5 OFFSET 8');
+        var queryString = "B1:D6";//encodeURIComponent('SELECT A, H, O, Q, R, U LIMIT 5 OFFSET 8');
 
         var query = new google.visualization.Query(
             'https://docs.google.com/spreadsheets/d/1U4foSYuNhbv89mCCvsrMZubuGcrx2D31XYxpazOZjGA/gviz/tq?sheet=Sheet1&headers=1&range=' + queryString);
